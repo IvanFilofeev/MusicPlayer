@@ -132,6 +132,7 @@ namespace mpDataBase
             if (element.Attribute("type").Value == "link")
                 audio = mpAudioLink.fromXElement(element);
             else
+
                 audio = mpLocalAudio.fromXElement(element);
             audio.Author = element.Attribute("author").Value;
             audio.Name = element.Attribute("name").Value;
