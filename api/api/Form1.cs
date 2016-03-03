@@ -19,20 +19,17 @@ namespace api
     {
         public List<Songs> tracks;
       
-        public Form1()
-        {
-            InitializeComponent();
-        }
+        
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            new Aut();
             backgroundWorker1.RunWorkerAsync();
         }
 
         private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
         {
-            //Console.WriteLine("Enter the name of band");
-            //string band = Console.ReadLine();
+           
             string url = "https://api.vk.com/method/audio.search?q=" + "example" + "&v=5.45&access_token=cda1f4058077be320505e7408b86cf30b84644e18db478b5da331690ba101c1fbddbb5d27c82ed90fd449";
             WebRequest wr = WebRequest.Create(url);
             WebResponse resp = wr.GetResponse();
