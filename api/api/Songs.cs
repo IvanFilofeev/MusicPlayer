@@ -13,9 +13,8 @@ namespace api
         public string artist { get; set; }
         public string title { get; set; }
         public int duration { get; set; }
-        public int date { get; set; }
         public string url { get; set; }
-        public string lurics_id { get; set; }
-        public int genre_id { get; set; }
+        public string lurlcs_id { get; set; }
+        public int genre { get; set; }
     }
 }
