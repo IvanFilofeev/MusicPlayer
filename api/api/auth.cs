@@ -33,6 +33,7 @@ namespace api
         {
             try
             {
+               
                 string url = webBrowser1.Url.ToString();
                 string l = url.Split('#')[1];
                 if (l[0] == 'a')

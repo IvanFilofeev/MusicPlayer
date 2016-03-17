@@ -36,8 +36,9 @@ namespace api
         {
             while (!auth_property.Default.secur)
             {
+                
                 Thread.Sleep(500);
-                string url = "https://api.vk.com/method/audio.search?q=example&access_token=" + auth_property.Default.token;
+                string url = "https://api.vk.com/method/audio.search?q="+"&access_token=" + auth_property.Default.token;
                 WebRequest request = WebRequest.Create(url);
 
                 try
@@ -67,8 +68,10 @@ namespace api
             }
         }
 
-        
+        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
-        
+        }
+
     }
 }
