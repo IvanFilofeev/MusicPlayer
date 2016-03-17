@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using mpDataBase;
 
 namespace api
 {
-    public class Songs
+    public class Songs : mpDataBase.mpAudio
     {
         public int aid { get; set; }
         public int owner_id { get; set; }

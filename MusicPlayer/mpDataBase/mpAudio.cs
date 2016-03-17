@@ -9,10 +9,10 @@ namespace mpDataBase
 {
     public interface PashaAudio
     {
-        string Url { get; }
-        string Author { get; }
-        string Name { get; }
-        string VKID { get; }
+        string url { get; }
+        string artist { get; }
+        string title { get; }
+        string aid { get; }
     }
     public class mpLocalAudio : mpAudio
     {
@@ -21,15 +21,15 @@ namespace mpDataBase
         {
             string targetFile = mpDataBaseController.generateFileName();
             HttpWebResponse response =
-              (HttpWebResponse)((HttpWebRequest)WebRequest.Create(vkAudio.Url)).GetResponse();
+              (HttpWebResponse)((HttpWebRequest)WebRequest.Create(vkAudio.url)).GetResponse();
             FileStream fs = new FileStream(targetFile, FileMode.Create);
             Stream rs = response.GetResponseStream();
             rs.CopyTo(fs);
             FileName = targetFile;
             rs.Close();
             fs.Close();
-            Name = vkAudio.Name;
-            Author = vkAudio.Author;
+            Name = vkAudio.title;
+            Author = vkAudio.artist;
         }
         internal mpLocalAudio(string filename)
         {
@@ -58,10 +58,10 @@ namespace mpDataBase
         public string VKID { get; internal set; }
         internal mpAudioLink(PashaAudio vkAudio)
         {
-            VKID = vkAudio.VKID;
-            Url = vkAudio.Url;
-            Author = vkAudio.Author;
-            Name = vkAudio.Name;
+            VKID = vkAudio.aid;
+            Url = vkAudio.url;
+            Author = vkAudio.artist;
+            Name = vkAudio.title;
         }
         private mpAudioLink() { }
         internal override XElement toXElement()
@@ -87,9 +87,9 @@ namespace mpDataBase
         public string Filename { get; internal set; }
         internal mpLocalAudioLink(PashaAudio vkAudio)
         {
-            Filename = vkAudio.Url;
-            Author = vkAudio.Author;
-            Name = vkAudio.Name;
+            Filename = vkAudio.url;
+            Author = vkAudio.artist;
+            Name = vkAudio.title;
         }
         private mpLocalAudioLink() { }
         internal override XElement toXElement()
