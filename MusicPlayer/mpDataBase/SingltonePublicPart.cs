@@ -1,15 +1,24 @@
-﻿using System.IO;
+﻿using System.Collections.Generic;
+using System.IO;
 
 namespace mpDataBase
 {
     public partial class mpDataBaseController
     {
+        public List<mpAudio> AudioList()
+        {
+            return new List<mpAudio>(audioList);
+        }
         /// <summary>
         /// Directory to save music, default is user's MyMusic folder.
         /// The set method also creates MusicFolder\cache folder,
         /// where all added through <c>addAudio</c> files will be saved.
+        /// Doesn't move files.
         /// </summary>
-        public string MusicFolder { get { return musicFolder; } set
+        public string MusicFolder
+        {
+            get { return musicFolder; }
+            set
             {
                 Directory.CreateDirectory(value + "\\cache");
                 musicFolder = value;
@@ -38,22 +47,21 @@ namespace mpDataBase
         /// Adds audio from local computer to collection.
         /// </summary>
         /// <param name="filename">File to add</param>
+        /// <param name="artist, title">Tags for file</param>
         /// <param name="audioType">If atFile, copies audio to working directory, it's also default behavior.
         /// If atLink, saves filename and uses it to access file later.</param>
         /// <returns>Returns <c>mpAudio</c> instance that refers to the new element of collection.</returns>
-        public mpAudio addAudio(string filename, AudioType audioType = AudioType.atFile)
+        public mpAudio addAudio(string filename, string artist, string title, AudioType audioType = AudioType.atFile)
         {
-            //Todo adding files from local.
-            return null;
-        }
-        /// <summary>
-        /// Clears cache of tags of local files and creates it again.
-        /// Does nothing with links.
-        /// Use when user has changed files in working directory manually.
-        /// </summary>
-        public void synchronizeAudioFiles()
-        {
-            //Todo synchronizing method.
+            mpAudio audio;
+            if (audioType == AudioType.atLink)
+                audio = new mpLocalAudioLink(filename, artist, title);
+            else
+                audio = new mpLocalAudio(filename, artist, title);
+            audio.Id = ++maxId;
+            if (audio.Id == int.MaxValue)
+                OptimizeIndex();
+            return audio;
         }
     }
 }
