@@ -14,7 +14,7 @@ namespace api
     class ap
     {
         public List<Songs> audiolist;
-        public void parce(string str)
+        public void parse(string str)
         {
             while (!auth_property.Default.secur)
             {
