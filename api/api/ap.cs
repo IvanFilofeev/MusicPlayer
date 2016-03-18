@@ -14,9 +14,9 @@ namespace api
     class ap
     {
         public List<Songs> audiolist;
-        public void parce(string str)
+        public void parse(string str)
         {
-            while (!auth_property.Default.secur)
+            while (!auth_property.Default.security)
             {
                 Thread.Sleep(500);
                 string url = "https://api.vk.com/method/audio.search?q=" + str + "&access_token=" + auth_property.Default.token;
