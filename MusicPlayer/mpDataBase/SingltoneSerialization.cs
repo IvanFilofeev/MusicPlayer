@@ -55,7 +55,7 @@ namespace mpDataBase
                 audio.Artist = audioFile.Tag.Performers[0];
                 audio.Title = audioFile.Tag.Title;
                 audio.Id = ++maxId;
-                audio.FileName = file;
+                audio.Link = file;
                 fs = new FileStream(file, FileMode.Open);
                 fs.Close();
                 audioList.Add(audio);

@@ -11,6 +11,5 @@ namespace Main
             Console.ReadLine();
             mpDataBaseController.Instance().Serialize();
         }
-        ////commit
     }
 }

@@ -16,13 +16,12 @@ namespace mpDataBase
     }
     public class mpLocalAudio : mpAudio
     {
-        public string FileName { get; internal set; }
         internal mpLocalAudio(PashaAudio vkAudio)
         {
-            FileName = mpDataBaseController.generateFileName();
+            Link = mpDataBaseController.generateFileName();
             HttpWebResponse response =
               (HttpWebResponse)((HttpWebRequest)WebRequest.Create(vkAudio.url)).GetResponse();
-            FileStream fs = new FileStream(FileName, FileMode.Create);
+            FileStream fs = new FileStream(Link, FileMode.Create);
             Stream rs = response.GetResponseStream();
             rs.CopyTo(fs);
             rs.Close();
@@ -32,8 +31,8 @@ namespace mpDataBase
         }
         internal mpLocalAudio(string filename, string artist, string title)
         {
-            FileName = mpDataBaseController.generateFileName();
-            File.Copy(filename, FileName);
+            Link = mpDataBaseController.generateFileName();
+            File.Copy(filename, Link);
             Artist = artist;
             Title = title;
         }
@@ -43,25 +42,24 @@ namespace mpDataBase
             XElement result = base.toXElement();
             result.Add(
                 new XAttribute("type", "local"),
-                new XAttribute("filename", FileName)
+                new XAttribute("filename", Link)
                 );
             return result;
         }
         new internal static mpLocalAudio fromXElement(XElement element)
         {
             mpLocalAudio result = mpAudio.fromXElement(element) as mpLocalAudio;
-            result.FileName = element.Attribute("filename").Value;
+            result.Link = element.Attribute("filename").Value;
             return result;
         }
     }
     public class mpAudioLink : mpAudio
     {
-        public string Url { get; internal set; }
         public string VKID { get; internal set; }
         internal mpAudioLink(PashaAudio vkAudio)
         {
             VKID = vkAudio.aid;
-            Url = vkAudio.url;
+            Link = vkAudio.url;
             Artist = vkAudio.artist;
             Title = vkAudio.title;
         }
@@ -71,7 +69,7 @@ namespace mpDataBase
             XElement result = base.toXElement();
             result.Add(
                 new XAttribute("type", "link"),
-                new XAttribute("url", Url),
+                new XAttribute("url", Link),
                 new XAttribute("vkId", VKID)
                 );
             return result;
@@ -79,17 +77,16 @@ namespace mpDataBase
         new internal static mpAudioLink fromXElement(XElement element)
         {
             mpAudioLink result = mpAudio.fromXElement(element) as mpAudioLink;
-            result.Url = element.Attribute("url").Value;
+            result.Link = element.Attribute("url").Value;
             result.VKID = element.Attribute("vkId").Value;
             return result;
         }
     }
     public class mpLocalAudioLink : mpAudio
     {
-        public string FileName { get; internal set; }
         internal mpLocalAudioLink(string filename, string artist, string title)
         {
-            FileName = filename;
+            Link = filename;
             Artist = artist;
             Title = title;
         }
@@ -99,14 +96,14 @@ namespace mpDataBase
             XElement result = base.toXElement();
             result.Add(
                 new XAttribute("type", "link"),
-                new XAttribute("filename", FileName)
+                new XAttribute("filename", Link)
                 );
             return result;
         }
         new internal static mpLocalAudioLink fromXElement(XElement element)
         {
             mpLocalAudioLink result = mpAudio.fromXElement(element) as mpLocalAudioLink;
-            result.FileName = element.Attribute("filename").Value;
+            result.Link = element.Attribute("filename").Value;
             return result;
         }
     }
@@ -116,6 +113,7 @@ namespace mpDataBase
         /// Internal for collection identifier.
         /// </summary>
         public int Id { get; internal set; }
+        public string Link { get; internal set; }
         public string Artist { get; internal set; }
         public string Title { get; internal set; }
         internal virtual XElement toXElement()
