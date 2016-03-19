@@ -1,8 +1,5 @@
 ﻿using System.IO;
 using System.Net;
-using System.Security.Cryptography;
-using System.Text;
-using Microsoft.DirectX.AudioVideoPlayback;
 using System.Xml.Linq;
 
 namespace mpDataBase

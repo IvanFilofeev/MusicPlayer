@@ -100,7 +100,7 @@
                                 <ColumnDefinition Width="174*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
                             <TextBox Grid.Column="0" Grid.Row="0" Height="41" Text="Что ищем?" Grid.ColumnSpan="4" Cursor="Arrow" ToolTip="Например Metallica" HorizontalAlignment="Center" Margin="14,0,22,47" Width="312" VerticalAlignment="Bottom" FontSize="16" Grid.RowSpan="2"/>
-                            <Button x:Name="ButtonSearch"  Grid.Column="4" Grid.Row="0" Content="Поиск" Height="Auto" Margin="0,10,10,10" FontSize="12" Click="ButtonSearch_Click"  />
+                            <Button x:Name="ButtonSearch"  Grid.Column="4" Grid.Row="0" Content="Поиск" Height="Auto" Margin="0,10,10,10" FontSize="12" />
                             <ListBox x:Name="ListBoxSearch" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Background="#FFE6E3EC" Height="454" VerticalAlignment="Top" Margin="10,10,10,-311" Grid.RowSpan="3"   />
                             <Button  Grid.Column="0"  Grid.Row="3" Grid.ColumnSpan="5"  Height="Auto" Content="Здесь будет плеер" Margin="0,429,10,-428"   />
                             <TextBlock Grid.Column="0" Grid.Row="3" Height="41" Text="Metallica nothing else matters " Grid.ColumnSpan="5" Cursor="Arrow" ToolTip="Например Metallica" HorizontalAlignment="Center" Margin="14,0,152,-373" Width="356" VerticalAlignment="Bottom" FontSize="16"/>
