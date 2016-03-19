@@ -104,12 +104,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\MusicPlayer\mpDataBase\mpDataBase.csproj">
-      <Project>{ffa2cc82-313b-481c-ba0c-35ad22281bf2}</Project>
-      <Name>mpDataBase</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
