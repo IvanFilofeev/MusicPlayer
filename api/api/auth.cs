@@ -39,7 +39,7 @@ namespace api
                 if (l[0] == 'a')
                 {
                     auth_property.Default.token = l.Split('&')[0].Split('=')[1];
-                    auth_property.Default.secur = true;
+                    auth_property.Default.security = true;
                     this.Close();
                     MessageBox.Show("Token:" + auth_property.Default.token );
                 }

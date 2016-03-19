@@ -18,7 +18,7 @@ namespace mpDataBase
     {
         internal mpLocalAudio(PashaAudio vkAudio)
         {
-            Link = mpDataBaseController.generateFileName();
+            Link = mpDataBaseController.Instance().generateFileName();
             HttpWebResponse response =
               (HttpWebResponse)((HttpWebRequest)WebRequest.Create(vkAudio.url)).GetResponse();
             FileStream fs = new FileStream(Link, FileMode.Create);
@@ -31,7 +31,7 @@ namespace mpDataBase
         }
         internal mpLocalAudio(string filename, string artist, string title)
         {
-            Link = mpDataBaseController.generateFileName();
+            Link = mpDataBaseController.Instance().generateFileName();
             File.Copy(filename, Link);
             Artist = artist;
             Title = title;

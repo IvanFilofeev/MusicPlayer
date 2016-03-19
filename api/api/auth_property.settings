@@ -5,7 +5,7 @@
     <Setting Name="token" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
-    <Setting Name="secur" Type="System.Boolean" Scope="User">
+    <Setting Name="security" Type="System.Boolean" Scope="User">
       <Value Profile="(Default)">False</Value>
     </Setting>
   </Settings>

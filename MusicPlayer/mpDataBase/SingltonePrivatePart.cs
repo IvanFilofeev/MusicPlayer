@@ -20,14 +20,14 @@ namespace mpDataBase
             foreach (mpAudio audio in audioList)
                 audio.Id = i++;
         }
-        internal static string generateFileName()
+        internal string generateFileName()
         {
             long x;
             Random rand = new Random();
             do
                 x = rand.Next() * int.MaxValue + rand.Next();
-            while (File.Exists(MusicFolder + "\\cache\\track" + x + ".mp3"));
-            return MusicFolder + "\\cache\\track" + x + ".mp3";
+            while (File.Exists(musicFolder + "\\cache\\track" + x + ".mp3"));
+            return musicFolder + "\\cache\\track" + x + ".mp3";
         }
         internal static string MD5Hash(Stream s)
         {
