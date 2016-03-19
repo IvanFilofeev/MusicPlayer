@@ -52,10 +52,10 @@ namespace mpDataBase
             {
                 audio = new mpLocalAudio();
                 TagLib.File audioFile = TagLib.File.Create(file);
-                audio.Author = audioFile.Tag.Performers[0];
-                audio.Name = audioFile.Tag.Title;
+                audio.Artist = audioFile.Tag.Performers[0];
+                audio.Title = audioFile.Tag.Title;
                 audio.Id = ++maxId;
-                audio.FileName = file;
+                audio.Link = file;
                 fs = new FileStream(file, FileMode.Open);
                 fs.Close();
                 audioList.Add(audio);
