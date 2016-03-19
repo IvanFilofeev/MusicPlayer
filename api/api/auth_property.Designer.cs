@@ -38,12 +38,12 @@ namespace api {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("False")]
-        public bool secur {
+        public bool security {
             get {
-                return ((bool)(this["secur"]));
+                return ((bool)(this["security"]));
             }
             set {
-                this["secur"] = value;
+                this["security"] = value;
             }
         }
     }
