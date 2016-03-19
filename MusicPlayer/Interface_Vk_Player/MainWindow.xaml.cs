@@ -23,6 +23,8 @@ namespace Interface_Vk_Player
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string str;
+
         public MainWindow()
         {
             InitializeComponent();
@@ -35,11 +37,21 @@ namespace Interface_Vk_Player
 
         }
 
+        
+
+        private void ButtonSearch_Click_1(object sender, RoutedEventArgs e)
+        {
+            SearchEngine engine = new SearchEngine(TextBoxSearch.Text);
+            engine.Search();
+            ListBoxSearch.ItemsSource = engine.GetFiles();
+        }
+
         //private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         //{
         //    Thread thread = new Thread(SearchResult);
         //    thread.Start();
         //}
+
 
         //private void SearchResult()
         //{
