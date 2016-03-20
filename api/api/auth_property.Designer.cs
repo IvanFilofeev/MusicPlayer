@@ -12,7 +12,7 @@ namespace api {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "12.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "14.0.0.0")]
     internal sealed partial class auth_property : global::System.Configuration.ApplicationSettingsBase {
         
         private static auth_property defaultInstance = ((auth_property)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new auth_property())));
@@ -44,6 +44,18 @@ namespace api {
             }
             set {
                 this["security"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string id {
+            get {
+                return ((string)(this["id"]));
+            }
+            set {
+                this["id"] = value;
             }
         }
     }

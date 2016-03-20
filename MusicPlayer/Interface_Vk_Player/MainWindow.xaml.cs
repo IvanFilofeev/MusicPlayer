@@ -56,6 +56,14 @@ namespace Interface_Vk_Player
 
         }
 
+        private void ButtonMyMusic_Click(object sender, RoutedEventArgs e)
+        {
+            MyMusicEngine engine = new MyMusicEngine();
+            engine.MyMusicLoad();
+            ListBoxMyMusic.ItemsSource = engine.MyMusicLoadGetFiles();
+
+        }
+
         //private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         //{
         //    Thread thread = new Thread(SearchResult);

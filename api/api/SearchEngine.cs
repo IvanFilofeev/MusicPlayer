@@ -12,28 +12,18 @@ namespace api
 {
     public class SearchEngine
     {
-
         string _WhatToSearch;
-
-
         public List<Songs> _audiolist;
         List<string> _searchResults = new List<string>();
-
-
-
 
         public SearchEngine(string WhatToSearch)
         {
             _WhatToSearch = WhatToSearch;
-
         }
 
         public void Search()
         {
-
             string url = "https://api.vk.com/method/audio.search?q=" + _WhatToSearch + "&access_token=" + auth_property.Default.token;
-
-
             WebRequest request = WebRequest.Create(url);
 
             try
@@ -50,13 +40,8 @@ namespace api
                 _audiolist = token["response"].Children().Skip(1).Select(c => c.ToObject<Songs>()).ToList();
                 for (int i = 0; i < _audiolist.Count(); i++)
                 {
-
                     _searchResults.Add(_audiolist[i].artist + " - " + _audiolist[i].title);
-
                 }
-
-
-
             }
             catch { }
         }
@@ -64,10 +49,7 @@ namespace api
 
         public List<string> GetFiles()
         {
-
             return _searchResults;
         }
-
-
     }
 }
