@@ -46,6 +46,16 @@ namespace Interface_Vk_Player
             ListBoxSearch.ItemsSource = engine.GetFiles();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         //private void ButtonSearch_Click(object sender, RoutedEventArgs e)
         //{
         //    Thread thread = new Thread(SearchResult);

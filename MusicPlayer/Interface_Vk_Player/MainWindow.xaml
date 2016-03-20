@@ -5,125 +5,116 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Interface_Vk_Player"
         mc:Ignorable="d"
-        Title="MainWindow" Height="715.258" Width="564.869" Loaded="Window_Loaded">
-    <Grid>
-        <Grid>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="445*"/>
-                <ColumnDefinition Width="99*"/>
-            </Grid.ColumnDefinitions>
-            <TabControl x:Name="Tab" Margin="10,10,23,10" Grid.ColumnSpan="2">
-                <TabItem x:Name="musicTab">
-                    <TabItem.Header>
-                        <StackPanel Orientation="Horizontal" Width="111">
-                            <Ellipse Height="10" Width="10" Fill="Black" />
-                            <TextBlock Margin="3" Height="17" Width="111" Text="Загрузки"/>
-                        </StackPanel>
-                    </TabItem.Header>
-                    <TabItem.Content>
-                        <Grid ShowGridLines="True" Margin="0,0,-4,0" Height="629" VerticalAlignment="Bottom">
-                            <Grid.RowDefinitions>
-                                <RowDefinition  Height="50"></RowDefinition>
-                                <RowDefinition Height="50"></RowDefinition>
-                                <RowDefinition Height="50"></RowDefinition>
-                                <RowDefinition Height="50"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="174*"></ColumnDefinition>
-                                <ColumnDefinition Width="15*"/>
-                                <ColumnDefinition Width="89*"/>
-                                <ColumnDefinition Width="26*"/>
-                                <ColumnDefinition Width="45*"/>
-                                <ColumnDefinition Width="174*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Grid.Row="0" Height="41" Text="Плейлист с заргуженными треками:" Grid.ColumnSpan="5" Cursor="Arrow" ToolTip="Например Metallica" HorizontalAlignment="Center" Margin="14,0,22,47" Width="312" VerticalAlignment="Bottom" FontSize="16" Grid.RowSpan="2"/>
-                            <Button  Grid.Column="5" Grid.Row="0" Content="Загрузить плейлист" Height="Auto" Margin="0,10,10,10" FontSize="12"  />
-                            <ListBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="6" Background="#FFE6E3EC" Height="454" VerticalAlignment="Top" Margin="10,10,10,-311" Grid.RowSpan="3"   />
-                            <Button  Grid.Column="0"  Grid.Row="3" Grid.ColumnSpan="6"  Height="Auto" Content="Здесь будет плеер" Margin="0,429,10,-428"   />
-                            <TextBlock Grid.Column="0" Grid.Row="3" Height="41" Text="Metallica nothing else matters " Grid.ColumnSpan="6" Cursor="Arrow" ToolTip="Например Metallica" HorizontalAlignment="Center" Margin="14,0,152,-373" Width="356" VerticalAlignment="Bottom" FontSize="16"/>
+         Height="750" Width="660"
+        Title="MainWindow"  Loaded="Window_Loaded" Topmost="True" WindowStartupLocation="CenterScreen" MinWidth="670" MinHeight="760" MaxWidth="670" MaxHeight="760">
 
-                        </Grid>
-                    </TabItem.Content>
-                </TabItem>
-                <TabItem x:Name="Search">
-                    <TabItem.Header>
-                        <StackPanel Orientation="Horizontal" Width="111">
-                            <Ellipse Height="10" Width="10" Fill="Black" />
-                            <TextBlock  Margin="3" Height="17" Width="87" Text="Моя музыка"/>
+    <Grid Margin="0,0,0,0">
+        <TabControl x:Name="Tab" Margin="10,10,10,10" >
+            <TabItem x:Name="DownLoadMusic" Margin="0,0,0,0" >
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="145" >
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3" Height="17" Width="100" Text="Загрузки"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="MyMusic" Margin="0,0,0,0">
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="145" >
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3" Height="17" Width="100" Text="Моя музыка"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="SearchMusic" Margin="0,0,0,0" >
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="145">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3" Height="17" Width="100" Text="Поиск"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid Margin="0,0,0,0" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition ></RowDefinition>
+                            <RowDefinition Height="50"></RowDefinition>
+                            <RowDefinition Height="70"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>                    
+                        
+                       
+                       
 
-                        </StackPanel>
-                    </TabItem.Header>
-                    <TabItem.Content>
-                        <Grid ShowGridLines="True" Margin="0,0,-4,0" Height="629" VerticalAlignment="Bottom">
-                            <Grid.RowDefinitions>
-                                <RowDefinition  Height="50"></RowDefinition>
-                                <RowDefinition Height="50"></RowDefinition>
-                                <RowDefinition Height="50"></RowDefinition>
-                                <RowDefinition Height="50"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="174*"></ColumnDefinition>
-                                <ColumnDefinition Width="103*"/>
-                                <ColumnDefinition Width="26*"/>
-                                <ColumnDefinition Width="45*"/>
-                                <ColumnDefinition Width="174*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock Grid.Column="0" Grid.Row="0" Height="41" Text="Плейлист из моего аккаунта:" Grid.ColumnSpan="4" Cursor="Arrow" ToolTip="Например Metallica" HorizontalAlignment="Center" Margin="14,0,22,47" Width="312" VerticalAlignment="Bottom" FontSize="16" Grid.RowSpan="2"/>
-                            <Button  Grid.Column="4" Grid.Row="0" Content="Загрузить плейлист" Height="Auto" Margin="0,10,10,10" FontSize="12"  />
-                            <ListBox Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Background="#FFE6E3EC" Height="454" VerticalAlignment="Top" Margin="10,10,10,-311" Grid.RowSpan="3"   />
-                            <Button  Grid.Column="0"  Grid.Row="3" Grid.ColumnSpan="5"  Height="Auto" Content="Здесь будет плеер" Margin="0,429,10,-428"   />
-                            <TextBlock Grid.Column="0" Grid.Row="3" Height="41" Text="Metallica nothing else matters " Grid.ColumnSpan="5" Cursor="Arrow" ToolTip="Например Metallica" HorizontalAlignment="Center" Margin="14,0,152,-373" Width="356" VerticalAlignment="Bottom" FontSize="16"/>
-                            <Button  Grid.Column="4"  Grid.Row="3"   Height="Auto" Content="Скачать" Margin="27,384,12,-373"   />
-                        </Grid>
-                    </TabItem.Content>
-                </TabItem>
-                <TabItem x:Name="DownLoad" Margin="-6,0,-11,-2">
-                    <TabItem.Header>
-                        <StackPanel Orientation="Horizontal" Width="111">
-                            <Ellipse Height="10" Width="10" Fill="Black" />
-                            <TextBlock Margin="3" Height="17" Width="65">Поиск</TextBlock>
-                        </StackPanel>
-                    </TabItem.Header>
-                    <TabItem.Content>
-                        <Grid ShowGridLines="True" Margin="0,0,-4,0" Height="629" VerticalAlignment="Bottom">
-                            <Grid.RowDefinitions>
-                                <RowDefinition  Height="50"></RowDefinition>
-                                <RowDefinition Height="50"></RowDefinition>
-                                <RowDefinition Height="50"></RowDefinition>
-                                <RowDefinition Height="50"></RowDefinition>
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="174*"></ColumnDefinition>
-                                <ColumnDefinition Width="103*"/>
-                                <ColumnDefinition Width="26*"/>
-                                <ColumnDefinition Width="47*"/>
-                                <ColumnDefinition Width="172*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
-                            <TextBox x:Name="TextBoxSearch" Grid.Column="0" Grid.Row="0" Height="27" Text="Что ищем?" Grid.ColumnSpan="4" Cursor="Arrow" ToolTip="Например Metallica" HorizontalAlignment="Center" Margin="10,0,28,10" Width="312" VerticalAlignment="Bottom" FontSize="16"/>
-                            <Button x:Name="ButtonSearch"  Grid.Column="4" Grid.Row="0" Content="Поиск" Height="Auto" Margin="0,10,10,10" FontSize="12" Click="ButtonSearch_Click_1" />
-                            <ListBox x:Name="ListBoxSearch" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="5" Background="#FFE6E3EC" Height="454" VerticalAlignment="Top" Margin="10,10,10,-311" Grid.RowSpan="3"   />
-                            <Button  Grid.Column="0"  Grid.Row="3" Grid.ColumnSpan="5"  Height="Auto" Content="Здесь будет плеер" Margin="0,424,10,-423"   />
-                            <TextBlock Grid.Column="0" Grid.Row="3" Height="41" Text="Сейчас играет " Grid.ColumnSpan="5" Cursor="Arrow" ToolTip="Например Metallica" HorizontalAlignment="Center" Margin="10,0,158,-365" Width="354" VerticalAlignment="Bottom" FontSize="16"/>
-                            <Button  Grid.Column="4"  Grid.Row="3"   Height="Auto" Content="Скачать" Margin="29,375,10,-364"   />
-                        </Grid>
-                    </TabItem.Content>
-                </TabItem>
-                <TabItem x:Name="PlayLists" Margin="8,0,-15,-2">
-                    <TabItem.Header>
-                        <StackPanel Orientation="Horizontal" Width="111">
-                            <Ellipse Height="10" Width="10" Fill="Black" />
-                            <TextBlock Margin="3" Height="17">Плейлисты</TextBlock>
-                        </StackPanel>
-                    </TabItem.Header>
-                    <TabItem.Content>
-                        <StackPanel>
+                        <TextBox x:Name="TextBoxSearch" Grid.Column="0" Grid.Row="0"  Text="Что ищем?"  Cursor="Arrow" ToolTip="Например Metallica" HorizontalAlignment="Center" VerticalAlignment="Center" Width="287"  FontSize="16" Margin="23,10,8,10"  />
+                        <Button x:Name="ButtonSearch" Click="ButtonSearch_Click_1" Grid.Column="1" Grid.Row="0" Content="Поиск"   FontSize="12"  Margin="159,9,0,9" Background="#FF2A95D3"   />
+                        <ListBox x:Name="ListBoxSearch" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#FFF2F5F7"  VerticalAlignment="Top"   />
+                        <Button  Grid.Column="0"  Grid.Row="3" Grid.ColumnSpan="2" Content="Плеер" Click="Button_Click_1" Background="#FF2A95D3"    />
+                        <TextBlock Grid.Column="0" Grid.Row="2"  Text="Сейчас играет "  Cursor="Arrow"  HorizontalAlignment="Center"  Width="290" VerticalAlignment="Center" FontSize="16" Margin="14,16,14,12"/>
+                        <Button  Grid.Column="1"  Grid.Row="2"   Content="Скачать" Click="Button_Click" Margin="159,9,0,9" Background="#FF2A95D3"   />
+
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
+            <TabItem x:Name="PlayListMusic" Margin="0,0,0,0"  >
+                <TabItem.Header>
+                    <StackPanel Orientation="Horizontal" Width="145">
+                        <Ellipse Height="10" Width="10" Fill="Black" />
+                        <TextBlock Margin="3" Height="17" Width="100" Text="Плейлисты"/>
+                    </StackPanel>
+                </TabItem.Header>
+                <TabItem.Content>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                            <RowDefinition></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                    </Grid>
+                </TabItem.Content>
+            </TabItem>
 
 
-                        </StackPanel>
-                    </TabItem.Content>
-                </TabItem>
-            </TabControl>
 
-        </Grid>
+
+        </TabControl>
+
     </Grid>
 </Window>
+
