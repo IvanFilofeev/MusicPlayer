@@ -57,8 +57,8 @@
                         <Button x:Name="ButtonMyMusic"  Grid.Column="1" Grid.Row="0" Content="Загрузить плейлист"   FontSize="12"  Margin="159,9,0,9" Background="#FF2A95D3" Click="ButtonMyMusic_Click"   />
                         <ListBox x:Name="ListBoxMyMusic" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#FFF2F5F7"  VerticalAlignment="Top"   />
                         <TextBlock Grid.Column="0" Grid.Row="2"  Text="Сейчас играет "  Cursor="Arrow"  HorizontalAlignment="Center"  Width="290" VerticalAlignment="Center" FontSize="16" Margin="14,16,14,12"/>
-                        <Button  Grid.Column="1"  Grid.Row="2"   Content="Скачать" Click="Button_Click" Margin="159,9,0,9" Background="#FF2A95D3"   />
-                        <Button  Grid.Column="0"  Grid.Row="3" Grid.ColumnSpan="2" Content="Плеер" Click="Button_Click_1" Background="#FF2A95D3"    />
+                        <!--<Button  Grid.Column="1"  Grid.Row="2"   Content="Скачать" Click="Button_Click" Margin="159,9,0,9" Background="#FF2A95D3"   />-->
+                        
 
                     </Grid>
                 </TabItem.Content>
@@ -84,11 +84,9 @@
                         </Grid.ColumnDefinitions>
                         <TextBox x:Name="TextBoxSearch" Grid.Column="0" Grid.Row="0"  Text="Что ищем?"  Cursor="Arrow" ToolTip="Например Metallica" HorizontalAlignment="Center" VerticalAlignment="Center" Width="287"  FontSize="16" Margin="23,10,8,10"  />
                         <Button x:Name="ButtonSearch" Click="ButtonSearch_Click_1" Grid.Column="1" Grid.Row="0" Content="Поиск"   FontSize="12"  Margin="159,9,0,9" Background="#FF2A95D3"   />
-                        <ListBox x:Name="ListBoxSearch" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#FFF2F5F7"  VerticalAlignment="Top"   />
-                        <!--<Button  Grid.Column="0"  Grid.Row="3" Grid.ColumnSpan="2" Content="Плеер" Click="Button_Click_1" Background="#FF2A95D3"    />-->
-                        <TextBlock Grid.Column="0" Grid.Row="2"  Text="Сейчас играет "  Cursor="Arrow"  HorizontalAlignment="Center"  Width="290" VerticalAlignment="Center" FontSize="16" Margin="14,16,14,12"/>
-                        <Button  Grid.Column="1"  Grid.Row="2"   Content="Скачать" Click="Button_Click" Margin="159,9,0,9" Background="#FF2A95D3"   />
-                        <WindowsFormsHost  Grid.Column="0"  Grid.Row="3" HorizontalAlignment="Left" Height="46" Margin="-2,22,0,0"  VerticalAlignment="Top" Width="632" Grid.ColumnSpan="2">
+                        <ListBox x:Name="ListBoxSearch" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#FFF2F5F7"  VerticalAlignment="Top" MouseDoubleClick="ListBoxSearch_MouseDoubleClick"   />
+                        <!--<Button  Grid.Column="1"  Grid.Row="2"   Content="Скачать" Click="Button_Click" Margin="159,9,0,9" Background="#FF2A95D3"   />-->
+                        <WindowsFormsHost x:Name="winFormsHost"  Grid.Column="0"  Grid.Row="3" HorizontalAlignment="Left" Height="46" Margin="-2,22,0,0"  VerticalAlignment="Top" Width="632" Grid.ColumnSpan="2">
                             <activeXControl:AxWindowsMediaPlayer x:Name="activeXMediaPlayer"/>
                         </WindowsFormsHost>
                     </Grid>
@@ -105,7 +103,6 @@
                     <Grid/>
                 </TabItem.Content>
             </TabItem>
-
 
 
 

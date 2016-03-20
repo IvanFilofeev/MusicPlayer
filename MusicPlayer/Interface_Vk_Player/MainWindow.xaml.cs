@@ -9,6 +9,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -24,6 +25,13 @@ namespace Interface_Vk_Player
     public partial class MainWindow : Window
     {
         public string str;
+        List<string> _Result = new List<string>();
+        List<string> _ResultUrls = new List<string>();
+        WMPLib.IWMPMedia URL;
+        WMPLib.IWMPPlaylist ListWithURLs;
+
+
+
 
         public MainWindow()
         {
@@ -37,56 +45,54 @@ namespace Interface_Vk_Player
 
         }
 
-        
 
-        private void ButtonSearch_Click_1(object sender, RoutedEventArgs e)
-        {
-            SearchEngine engine = new SearchEngine(TextBoxSearch.Text);
-            engine.Search();
-            ListBoxSearch.ItemsSource = engine.GetFiles();
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-
-        }
 
         private void ButtonMyMusic_Click(object sender, RoutedEventArgs e)
         {
-            MyMusicEngine engine = new MyMusicEngine();
-            engine.MyMusicLoad();
-            ListBoxMyMusic.ItemsSource = engine.MyMusicLoadGetFiles();
+            MyMusicEngine engineMyMusic = new MyMusicEngine();
+            engineMyMusic.MyMusicLoad();
+
+            ListBoxMyMusic.ItemsSource = engineMyMusic.MyMusicLoadGetFiles();
 
         }
 
-        //private void ButtonSearch_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Thread thread = new Thread(SearchResult);
-        //    thread.Start();
-        //}
+        private void ButtonSearch_Click_1(object sender, RoutedEventArgs e)
+        {
+
+            SearchEngine engine = new SearchEngine(TextBoxSearch.Text);
+            engine.Search();
+            _Result = engine.GetFiles();
+            _ResultUrls = engine.GetUrls();
+            ListWithURLs = activeXMediaPlayer.playlistCollection.newPlaylist("vkPlayList");
+
+            for (int i = 0; i < _ResultUrls.Count(); i++)
+            {
+
+                URL = activeXMediaPlayer.newMedia(_ResultUrls[i]);
+                ListWithURLs.appendItem(URL);
+
+            }
+            activeXMediaPlayer.currentPlaylist = ListWithURLs;
+            activeXMediaPlayer.Ctlcontrols.stop();
+
+            ListBoxSearch.ItemsSource = engine.GetFiles();
+
+        }
 
 
-        //private void SearchResult()
-        //{
-        //    Thread.Sleep(TimeSpan.FromSeconds(5));
 
 
-        //    this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
-        //        (ThreadStart)delegate ()
-        //        {
-        //            for (int i = 0; i < audiolist.Count(); i++)
-        //            {
 
-        //                ListBoxSearch.Items.Add(audiolist[i].artist + " - " + audiolist[i].title);
+        private void ListBoxSearch_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (ListBoxSearch.SelectedIndex != -1)
 
-        //            }
-        //        }
+            {
+                activeXMediaPlayer.Ctlcontrols.play();
+                activeXMediaPlayer.Ctlcontrols.currentItem = activeXMediaPlayer.currentPlaylist.get_Item(ListBoxSearch.SelectedIndex);              
 
-        //}
+
+            }
+        }
     }
 }

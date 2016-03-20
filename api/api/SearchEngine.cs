@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json.Linq;
+﻿using AxWMPLib;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -13,8 +14,12 @@ namespace api
     public class SearchEngine
     {
         string _WhatToSearch;
-        public List<Songs> _audiolist;
+        public List<Songs> _audiolist;        
+       List<string> _urls = new List<string>();
+
         List<string> _searchResults = new List<string>();
+        
+       
 
         public SearchEngine(string WhatToSearch)
         {
@@ -38,18 +43,30 @@ namespace api
 
                 JToken token = JToken.Parse(js_a);
                 _audiolist = token["response"].Children().Skip(1).Select(c => c.ToObject<Songs>()).ToList();
+
+                
+
+
                 for (int i = 0; i < _audiolist.Count(); i++)
                 {
-                    _searchResults.Add(_audiolist[i].artist + " - " + _audiolist[i].title);
+                  
+                    _searchResults.Add(_audiolist[i].artist + " - " + _audiolist[i].title );
+                    _urls.Add( _audiolist[i].url);
                 }
+                
             }
             catch { }
-        }
+        }      
 
 
         public List<string> GetFiles()
         {
             return _searchResults;
         }
+        public List<string> GetUrls()
+        {
+            return _urls;
+        }
+
     }
 }
