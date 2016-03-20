@@ -15,6 +15,10 @@ namespace mpDataBase
                 Init();
             Console.WriteLine();
         }
+        /// <summary>
+        /// Gives instance of singletone.
+        /// </summary>
+        /// <returns></returns>
         public static mpDataBaseController Instance()
         {
             if (instance == null)
