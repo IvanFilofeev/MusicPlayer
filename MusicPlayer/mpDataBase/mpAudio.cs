@@ -4,6 +4,9 @@ using System.Xml.Linq;
 
 namespace mpDataBase
 {
+    /// <summary>
+    /// Created for attaching another part of project
+    /// </summary>
     public interface PashaAudio
     {
         string url { get; }
@@ -11,6 +14,9 @@ namespace mpDataBase
         string title { get; }
         string aid { get; }
     }
+    /// <summary>
+    /// Describes audio, located in workpath.
+    /// </summary>
     public class mpLocalAudio : mpAudio
     {
         internal mpLocalAudio(PashaAudio vkAudio)
@@ -50,6 +56,9 @@ namespace mpDataBase
             return result;
         }
     }
+    /// <summary>
+    /// Describes audio, located on external web-server. <c>Link</c> method gives url instead of filename.
+    /// </summary>
     public class mpAudioLink : mpAudio
     {
         public string VKID { get; internal set; }
@@ -79,6 +88,9 @@ namespace mpDataBase
             return result;
         }
     }
+    /// <summary>
+    /// Describes audio, located somewhere on local machine, excluding workpath.
+    /// </summary>
     public class mpLocalAudioLink : mpAudio
     {
         internal mpLocalAudioLink(string filename, string artist, string title)
@@ -104,15 +116,25 @@ namespace mpDataBase
             return result;
         }
     }
-    public class mpAudio
+    /// <summary>
+    /// Base class for all audio classes.
+    /// </summary>
+    public abstract class mpAudio
     {
         /// <summary>
         /// Internal for collection identifier.
         /// </summary>
         public int Id { get; internal set; }
+        /// <summary>
+        /// Refers to audiofile location.
+        /// </summary>
         public string Link { get; internal set; }
         public string Artist { get; internal set; }
         public string Title { get; internal set; }
+        //internal mpAudio() { }
+        /// <summary>
+        /// Serialization method.
+        /// </summary>
         internal virtual XElement toXElement()
         {
             XElement result = new XElement("track");
@@ -123,6 +145,9 @@ namespace mpDataBase
                 );
             return result;
         }
+        /// <summary>
+        /// Deserialization method.
+        /// </summary>
         internal static mpAudio fromXElement(XElement element)
         {
             mpAudio audio;
