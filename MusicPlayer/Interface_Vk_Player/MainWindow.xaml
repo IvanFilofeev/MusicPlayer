@@ -5,10 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Interface_Vk_Player"
         mc:Ignorable="d"
-         Height="750" Width="660"
+         Height="748" Width="660"
         xmlns:windowForms="clr-namespace:System.Windows.Forms;assembly=System.Windows.Forms" 
         xmlns:activeXControl="clr-namespace:AxWMPLib;assembly=AxInterop.WMPLib" 
-        Title="MainWindow"  Loaded="Window_Loaded" Topmost="True" WindowStartupLocation="CenterScreen" MinWidth="670" MinHeight="760" MaxWidth="670" MaxHeight="760">
+        Title="VK-player"  Loaded="Window_Loaded" WindowStartupLocation="CenterScreen" MinWidth="670" MinHeight="760" MaxWidth="670" MaxHeight="760" ResizeMode="NoResize">
 
     <Grid Margin="0,0,0,0">
         <TabControl x:Name="Tab" Margin="10,10,10,10" >
@@ -55,10 +55,13 @@
                         </Grid.ColumnDefinitions>
                         <TextBlock  Grid.Column="0" Grid.Row="0"  Text="Музыка из вашего аккаунта:"  Cursor="Arrow"  HorizontalAlignment="Center" VerticalAlignment="Center" Width="287"  FontSize="16" Margin="23,10,8,10"  />
                         <Button x:Name="ButtonMyMusic"  Grid.Column="1" Grid.Row="0" Content="Загрузить плейлист"   FontSize="12"  Margin="159,9,0,9" Background="#FF2A95D3" Click="ButtonMyMusic_Click"   />
-                        <ListBox x:Name="ListBoxMyMusic" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#FFF2F5F7"  VerticalAlignment="Top"   />
-                        <TextBlock Grid.Column="0" Grid.Row="2"  Text="Сейчас играет "  Cursor="Arrow"  HorizontalAlignment="Center"  Width="290" VerticalAlignment="Center" FontSize="16" Margin="14,16,14,12"/>
-                        <!--<Button  Grid.Column="1"  Grid.Row="2"   Content="Скачать" Click="Button_Click" Margin="159,9,0,9" Background="#FF2A95D3"   />-->
+                        <ListBox x:Name="ListBoxMyMusic" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#FFF2F5F7"  VerticalAlignment="Top" MouseDoubleClick="ListBoxMyMusic_MouseDoubleClick"   />
                         
+                        <WindowsFormsHost x:Name="winFormsHostMyMusic"  Grid.Column="0"  Grid.Row="3" HorizontalAlignment="Left" Height="46" Margin="-2,22,0,0"  VerticalAlignment="Top" Width="632" Grid.ColumnSpan="2">
+                            <activeXControl:AxWindowsMediaPlayer x:Name="activeXMediaPlayerMyMusic"/>
+                        </WindowsFormsHost>
+                        
+
 
                     </Grid>
                 </TabItem.Content>
@@ -82,13 +85,21 @@
                             <ColumnDefinition></ColumnDefinition>
                             <ColumnDefinition></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                        <TextBox x:Name="TextBoxSearch" Grid.Column="0" Grid.Row="0"  Text="Что ищем?"  Cursor="Arrow" ToolTip="Например Metallica" HorizontalAlignment="Center" VerticalAlignment="Center" Width="287"  FontSize="16" Margin="23,10,8,10"  />
+                        <TextBox x:Name="TextBoxSearch" Grid.Column="0" Grid.Row="0"  Text="Что ищем?"  Cursor="Arrow" ToolTip="Например Metallica" HorizontalAlignment="Center" VerticalAlignment="Center" Width="287"  FontSize="16" Margin="23,10,8,10"  >
+                            <TextBox.SelectionBrush>
+                                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                                    <GradientStop Color="Black" Offset="0"/>
+                                    <GradientStop Color="White" Offset="1"/>
+                                </LinearGradientBrush>
+                            </TextBox.SelectionBrush>
+                        </TextBox>
                         <Button x:Name="ButtonSearch" Click="ButtonSearch_Click_1" Grid.Column="1" Grid.Row="0" Content="Поиск"   FontSize="12"  Margin="159,9,0,9" Background="#FF2A95D3"   />
                         <ListBox x:Name="ListBoxSearch" Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2" Background="#FFF2F5F7"  VerticalAlignment="Top" MouseDoubleClick="ListBoxSearch_MouseDoubleClick"   />
-                        <!--<Button  Grid.Column="1"  Grid.Row="2"   Content="Скачать" Click="Button_Click" Margin="159,9,0,9" Background="#FF2A95D3"   />-->
                         <WindowsFormsHost x:Name="winFormsHost"  Grid.Column="0"  Grid.Row="3" HorizontalAlignment="Left" Height="46" Margin="-2,22,0,0"  VerticalAlignment="Top" Width="632" Grid.ColumnSpan="2">
                             <activeXControl:AxWindowsMediaPlayer x:Name="activeXMediaPlayer"/>
                         </WindowsFormsHost>
+                        <Button x:Name="DownLoad" Content="Скачать" Grid.Column="1" Grid.Row="2" Click="DownLoad_Click" Margin="159,9,0,9" FontSize="12" Background="#FF2A95D3"    />
+                        <ProgressBar x:Name="___progressBar" Grid.Row="2" HorizontalAlignment="Left" Height="25" Margin="18,16,0,0"  VerticalAlignment="Top" Width="284" Foreground="#FF2A95D3" Background="#FFC0DFF1" BorderBrush="#FFC0DFF1" />
                     </Grid>
                 </TabItem.Content>
             </TabItem>

@@ -19,7 +19,7 @@ namespace api
 
         private void auth_Load(object sender, EventArgs e)
         {
-            string url = "https://oauth.vk.com/authorize?client_id=5303207&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=audio&response_type=token&v=5.45";
+            string url = "https://oauth.vk.com/authorize?client_id=5369634&display=page&redirect_uri=https://oauth.vk.com/blank.html&scope=audio&response_type=token&v=5.45";
             webBrowser1.Navigate(url);
 
         }
@@ -39,9 +39,11 @@ namespace api
                 if (l[0] == 'a')
                 {
                     auth_property.Default.token = l.Split('&')[0].Split('=')[1];
+                    auth_property.Default.id = l.Split('=')[3];
                     auth_property.Default.security = true;
+                    
                     this.Close();
-                    MessageBox.Show("Поздравляю!Авторизация прошла успешно.Ваш плейлист сейчас загрузится. ");
+                    MessageBox.Show("Поздравляю!Авторизация прошла успешно. ");
                 }
             }
 

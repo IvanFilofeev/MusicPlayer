@@ -42,9 +42,7 @@ namespace api
                 js_a = HttpUtility.HtmlDecode(js_a);
 
                 JToken token = JToken.Parse(js_a);
-                _audiolist = token["response"].Children().Skip(1).Select(c => c.ToObject<Songs>()).ToList();
-
-                
+                _audiolist = token["response"].Children().Skip(1).Select(c => c.ToObject<Songs>()).ToList();                
 
 
                 for (int i = 0; i < _audiolist.Count(); i++)
