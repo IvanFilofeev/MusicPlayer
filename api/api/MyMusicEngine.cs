@@ -20,7 +20,8 @@ namespace api
 
         public void MyMusicLoad()
         {            
-            WebRequest request =WebRequest.Create("https://api.vk.com/method/audio.get?owner_id" + auth_property.Default.id + "&need_user=0&access_token=" + auth_property.Default.token);
+            WebRequest request =WebRequest.Create("https://api.vk.com/method/audio.get?owner_id" +
+                auth_property.Default.id + "&need_user=0&access_token=" + auth_property.Default.token);
 
             try
             {
@@ -45,7 +46,7 @@ namespace api
                 }
 
             }
-            catch { }           
+            catch { }        
 
 
         }

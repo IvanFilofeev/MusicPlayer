@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
@@ -25,13 +26,22 @@ namespace Interface_Vk_Player
     public partial class MainWindow : Window
     {
         public string str;
+        //
         List<string> _Result = new List<string>();
         List<string> _ResultUrls = new List<string>();
-        List<string> _MyMusicResultUrls = new List<string>();
         public string URLToDownLoad;
         public string NameOfSong;
+        //
+        List<string> _MyMusicResult = new List<string>();
+        List<string> _MyMusicResultUrls = new List<string>();
+        public string URLToDownLoadMyMusic;
+        public string NameOfSongMyMusic;
+
+        //
+
 
         WMPLib.IWMPMedia URL;
+        WMPLib.IWMPMedia MyMusicURL;
         WMPLib.IWMPPlaylist ListWithURLs;
         WMPLib.IWMPPlaylist MyMusicListWithURLs;
 
@@ -46,7 +56,7 @@ namespace Interface_Vk_Player
             auth window = new auth();
             window.Show();
         }
-
+         //Часть отвечающая за музыку из моего аккаунта (Начало)
         private void ButtonMyMusic_Click(object sender, RoutedEventArgs e)
         {
             Thread thread = new Thread(LoadMyMusic);
@@ -56,20 +66,22 @@ namespace Interface_Vk_Player
         {
             Thread.Sleep(TimeSpan.FromSeconds(2));
 
-            // Получить диспетчер от текущего окна и использовать его для вызова кода обновления
+           
             this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                 (ThreadStart)delegate ()
                 {
                     MyMusicEngine engineMyMusic = new MyMusicEngine();
                     engineMyMusic.MyMusicLoad();
+                    _MyMusicResult = engineMyMusic.MyMusicLoadGetFiles();
                     _MyMusicResultUrls = engineMyMusic.MyMusicGetUrls();
+                   
                     MyMusicListWithURLs = activeXMediaPlayerMyMusic.playlistCollection.newPlaylist("MyMusicPlayList");
 
                     for (int i = 0; i < _MyMusicResultUrls.Count(); i++)
                     {
 
-                        URL = activeXMediaPlayerMyMusic.newMedia(_MyMusicResultUrls[i]);
-                        MyMusicListWithURLs.appendItem(URL);
+                        MyMusicURL = activeXMediaPlayerMyMusic.newMedia(_MyMusicResultUrls[i]);
+                        MyMusicListWithURLs.appendItem(MyMusicURL);
 
                     }
                     activeXMediaPlayerMyMusic.currentPlaylist = MyMusicListWithURLs;
@@ -77,10 +89,51 @@ namespace Interface_Vk_Player
 
                     ListBoxMyMusic.ItemsSource = engineMyMusic.MyMusicLoadGetFiles();
 
+                    
                 }
             );
 
         }
+
+        private void ListBoxMyMusic_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (ListBoxMyMusic.SelectedIndex != -1)
+
+            {
+                activeXMediaPlayerMyMusic.Ctlcontrols.play();
+                activeXMediaPlayerMyMusic.Ctlcontrols.currentItem = activeXMediaPlayerMyMusic.currentPlaylist.get_Item(ListBoxMyMusic.SelectedIndex);
+                int k = ListBoxMyMusic.SelectedIndex;
+                URLToDownLoadMyMusic = _MyMusicResultUrls[k];
+                NameOfSongMyMusic = _MyMusicResult[k] + ".mp3";
+
+            }
+
+        }
+        private void DownLoadMyMusic_Click_1(object sender, RoutedEventArgs e)
+        {
+            WebClient webClient = new WebClient();
+            webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(CompletedMyMusic);
+            webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChangedMyMusic);
+            webClient.DownloadFileAsync(new Uri(URLToDownLoadMyMusic), @"C:\загрузки_из_vk-player\\" + NameOfSongMyMusic);
+        }
+        private void ProgressChangedMyMusic(object sender, DownloadProgressChangedEventArgs e)
+        {
+            ___progressBarMyMusic.Value = e.ProgressPercentage;
+        }
+
+        private void CompletedMyMusic(object sender, AsyncCompletedEventArgs e)
+        {
+            System.Windows.MessageBox.Show("Трек загружен");
+        }
+        //Часть отвечающая за музыку из моего аккаунта (Конец)
+
+
+
+
+        //Часть отвечающая за поиск музыки (Начало)
+
+
+
         private void ButtonSearch_Click_1(object sender, RoutedEventArgs e)
         {
             Thread thread = new Thread(LoadSearcResult);
@@ -91,7 +144,7 @@ namespace Interface_Vk_Player
         {
             Thread.Sleep(TimeSpan.FromSeconds(2));
 
-            // Получить диспетчер от текущего окна и использовать его для вызова кода обновления
+          
             this.Dispatcher.BeginInvoke(DispatcherPriority.Normal,
                 (ThreadStart)delegate ()
                 {
@@ -120,31 +173,7 @@ namespace Interface_Vk_Player
         }
 
 
-        //private void ButtonSearch_Click_1(object sender, RoutedEventArgs e)
-        //{
-
-            //    SearchEngine engine = new SearchEngine(TextBoxSearch.Text);
-            //    engine.Search();
-            //    _Result = engine.GetFiles();
-            //    _ResultUrls = engine.GetUrls();
-            //    ListWithURLs = activeXMediaPlayer.playlistCollection.newPlaylist("vkPlayList");
-
-            //    for (int i = 0; i < _ResultUrls.Count(); i++)
-            //    {
-
-            //        URL = activeXMediaPlayer.newMedia(_ResultUrls[i]);
-            //        ListWithURLs.appendItem(URL);
-
-            //    }
-            //    activeXMediaPlayer.currentPlaylist = ListWithURLs;
-            //    activeXMediaPlayer.Ctlcontrols.stop();
-
-            //    ListBoxSearch.ItemsSource = engine.GetFiles();
-
-
-
-            //}
-
+     
         private void ListBoxSearch_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             if (ListBoxSearch.SelectedIndex != -1)
@@ -160,28 +189,17 @@ namespace Interface_Vk_Player
         }
         
 
-        private void ListBoxMyMusic_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            if (ListBoxMyMusic.SelectedIndex != -1)
-
-            {
-                activeXMediaPlayerMyMusic.Ctlcontrols.play();
-                activeXMediaPlayerMyMusic.Ctlcontrols.currentItem = activeXMediaPlayerMyMusic.currentPlaylist.get_Item(ListBoxMyMusic.SelectedIndex);
-            }
-
-        }
         private void DownLoad_Click(object sender, RoutedEventArgs e)
         {
             
             WebClient webClient = new WebClient();
             webClient.DownloadFileCompleted += new AsyncCompletedEventHandler(Completed);
             webClient.DownloadProgressChanged += new DownloadProgressChangedEventHandler(ProgressChanged);
-            webClient.DownloadFileAsync(new Uri(URLToDownLoad), @"Test\\" + NameOfSong );
-            
+            webClient.DownloadFileAsync(new Uri(URLToDownLoad), @"C:\загрузки_из_vk-player\\" + NameOfSong);         
 
 
-        }
-        
+        }    
+
 
 
 
@@ -194,7 +212,76 @@ namespace Interface_Vk_Player
         {
             System.Windows.MessageBox.Show("Трек загружен");
         }
+        //Часть отвечающая за поиск музыки (конец)
 
+
+
+
+
+
+
+        List<string> mediaFileList;
+        string mediaFolder = string.Empty;
+
+
+        private void ButtonLoadDownloadedMusic_Click(object sender, RoutedEventArgs e)
+
+        {
+            mediaFileList = new List<string>();
+
+            System.Windows.Forms.FolderBrowserDialog fbd = new  System.Windows.Forms.FolderBrowserDialog();
+
+            if (fbd.ShowDialog() != System.Windows.Forms.DialogResult.Cancel)
+
+            {
+
+                mediaFolder = fbd.SelectedPath;
+                DirectoryInfo dir = new DirectoryInfo(mediaFolder);
+                foreach (FileInfo file in dir.GetFiles("*.*", SearchOption.AllDirectories))
+
+                {
+
+                    if (file.Extension == ".mp3" )
+
+                    {
+
+                        mediaFileList.Add(file.Name);
+
+                    }
+
+                }
+
+
+
+                if (mediaFileList != null)
+
+                {
+
+                    ListBoxDownloadedMusic.ItemsSource = null;
+                    ListBoxDownloadedMusic.ItemsSource = mediaFileList;
+
+                }
+
+            }
+
+        }
+
+        private void ListBoxDownloadedMusic_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (ListBoxDownloadedMusic.SelectedIndex != -1)
+
+            {
+
+                AxWMPLib.AxWindowsMediaPlayer axWmp =
+
+                  winFormsHostDownloadedMusic.Child as AxWMPLib.AxWindowsMediaPlayer;
+
+                activeXMediaPlayerDownloadedMusic.URL = mediaFolder + "\\" + ListBoxDownloadedMusic.SelectedItem.ToString();
+
+            }
+        }
+
+        
        
     }
 }
